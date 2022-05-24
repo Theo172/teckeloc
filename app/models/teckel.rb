@@ -10,4 +10,7 @@ class Teckel < ApplicationRecord
   validates :color, presence: true
   validates :address, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
+
+  has_one_attached :photo
+  validates :photo, presence: true
 end
