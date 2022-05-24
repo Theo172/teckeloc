@@ -1,0 +1,6 @@
+
+<% @teckels.each do |teckel| %>
+<%= link_to teckel.name, teckel_path(teckel) %>
+<% end %>
+
+<%= link_to "create", new_teckel_path %>
