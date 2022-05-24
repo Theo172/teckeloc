@@ -1,0 +1,16 @@
+<%= simple_form_for @teckel do |f| %>
+  <%= f.input :name %>
+  <%= f.input :hair %>
+  <%= f.input :species %>
+  <%= f.input :color %>
+  <%= f.input :age %>
+  <%= f.input :sex %>
+  <%= f.input :address %>
+  <%= f.input :special_features %>
+  <%= f.input :description %>
+  <%= f.input :anecdote %>
+  <%= f.input :price %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "back", teckels_path %>
