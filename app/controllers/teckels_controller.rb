@@ -10,11 +10,11 @@ class TeckelsController < ApplicationController
   end
 
   def new
-    @teckel = Teckel.new
+    @teckel = current_user.teckels.new
   end
 
   def create
-    @teckel = Teckel.new(teckel_params)
+    @teckel = current_user.teckels.new(teckel_params)
     if @teckel.save
       redirect_to teckel_path(@teckel)
     else
@@ -31,5 +31,4 @@ class TeckelsController < ApplicationController
   def teckel_params
     params.require(:teckel).permit(:name, :species, :hair, :color, :age, :sex, :address, :special_features, :description, :anecdote, :price)
   end
-
 end
