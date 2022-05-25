@@ -19,12 +19,13 @@
       <ul class="dropdown-menu">
         <% if user_signed_in? %>
         <%= link_to "Profile", profile_path, class: "dropdown-item" %>
-        <%= link_to "Add your teckel", new_teckel_path, class: "dropdown-item" %>
         <%= link_to "Log-out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         <% else %>
         <%= link_to "Log-in", user_session_path, class: "dropdown-item" %>
         <%= link_to "Register",  new_user_registration_path, class: "dropdown-item" %>
         <% end %>
+        <%= link_to "Add your teckel", new_teckel_path, class: "dropdown-item" %>
+
       </ul>
   </div>
 </header>
