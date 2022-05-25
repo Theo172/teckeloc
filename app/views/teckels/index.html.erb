@@ -14,11 +14,3 @@
     </div>
   <% end %>
 </div>
-<%= link_to "create", new_teckel_path %>
-
-<% if user_signed_in? %>
-  <%= link_to "My profile", profile_path %>
-  <%= link_to "Logout",  destroy_user_session_path, method: :delete %>
-  <% else %>
-  <%= link_to "Login", user_session_path%>
-<% end %>
