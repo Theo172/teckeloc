@@ -4,5 +4,12 @@
     <%= link_to "edit", edit_teckel_path(@teckel) %>
     <%= link_to "delete", teckel_path(@teckel), method: :delete%>
   <% end %>
+  <%= simple_form_for [@teckel, @reservation] do |f| %>
+  <%= f.input :starting_date %>
+  <%= f.input :ending_date %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "back", teckels_path %>
 <%= link_to "Back to Home page", teckels_path %>
 

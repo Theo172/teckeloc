@@ -1,10 +1,14 @@
 <h1>Profile</h1>
 <%= @user.email %>
 
-
 <% @user.teckels.each do |teckel| %>
   <%= teckel.name %>
    <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
 
-<%= link_to "Add a pet",  new_teckel_path %>
+
+<% @user.reservations.each do |reservation| %>
+   <%= reservation.teckel.name %>
+   <%= reservation.starting_date %>
+   <%= reservation.ending_date %>
+<% end %>
