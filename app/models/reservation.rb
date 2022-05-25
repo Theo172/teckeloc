@@ -1,4 +1,4 @@
 class Reservation < ApplicationRecord
-  belongs_to :user
-  belongs_to :teckel
+  belongs_to :user, dependent: :destroy
+  belongs_to :teckel, dependent: :destroy
 end
