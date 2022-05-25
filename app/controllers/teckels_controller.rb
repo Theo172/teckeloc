@@ -1,6 +1,6 @@
 class TeckelsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_params, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :edit, :destroy, :update]
+  before_action :set_params, only: [:show, :edit, :update, :destroy]
 
   def index
     @teckels = Teckel.all
@@ -20,6 +20,21 @@ class TeckelsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @teckel.update(teckel_params)
+
+    redirect_to profile_path
+  end
+
+  def destroy
+    @teckel.destroy
+
+    redirect_to profile_path
   end
 
   private

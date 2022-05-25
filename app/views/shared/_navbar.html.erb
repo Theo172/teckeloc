@@ -1,6 +1,8 @@
 <header class="header">
   <div class="header__logo">
+    <%= link_to root_path do %>
     <%= image_tag 'teckel', class:'teck', alt:'teckel' %>
+    <% end %>
   </div>
 
   <div class="header__search">
@@ -15,9 +17,14 @@
       <%= image_tag 'teckel-item', alt:"teckel", class:"avatar dropdown-toggle" %> for more
     </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Log-in</a></li>
-        <li><a class="dropdown-item" href="#">Dashboard</a></li>
-        <li><a class="dropdown-item" href="#">Add a new puppy</a></li>
+        <% if user_signed_in? %>
+        <%= link_to "Profile", profile_path, class: "dropdown-item" %>
+        <%= link_to "Add your teckel", new_teckel_path, class: "dropdown-item" %>
+        <%= link_to "Log-out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        <% else %>
+        <%= link_to "Log-in", user_session_path, class: "dropdown-item" %>
+        <%= link_to "Register",  new_user_registration_path, class: "dropdown-item" %>
+        <% end %>
       </ul>
   </div>
 </header>

@@ -1,10 +1,10 @@
 <%= simple_form_for @teckel do |f| %>
   <%= f.input :name %>
-  <%= f.input :hair, collection: Teckel::HAIR %>
-  <%= f.input :species, collection: Teckel::SPECIES %>
+  <%= f.input :hair %>
+  <%= f.input :species %>
   <%= f.input :color %>
   <%= f.input :age %>
-  <%= f.input :sex, collection: Teckel::SEX  %>
+  <%= f.input :sex %>
   <%= f.input :address %>
   <%= f.input :special_features %>
   <%= f.input :description %>
