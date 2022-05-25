@@ -4,14 +4,4 @@
     <%= teckel.name %>
     <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill %>
   <% end %>
-
-  <% if user_signed_in? %>
-    <%= link_to "My profile", profile_path %>
-    <%= link_to "create", new_teckel_path %>
-    <%= link_to "edit", edit_teckel_path(teckel) %>
-    <%= link_to "delete", teckel_path(teckel) %>
-    <%= link_to "Logout",  destroy_user_session_path, method: :delete %>
-    <% else %>
-    <%= link_to "Login", user_session_path %>
-  <% end %>
 <% end %>
