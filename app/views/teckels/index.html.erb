@@ -1,7 +1,23 @@
 
-<% @teckels.each do |teckel| %>
-  <%= link_to teckel_path(teckel) do%>
-    <%= teckel.name %>
-    <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill %>
+<div class="card_background">
+  <% @teckels.each do |teckel| %>
+    <%= link_to teckel.name, teckel_path(teckel), class: "d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1" %>
+    <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
+    <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
+      <p>Meet <%= teckel.name %></p>
+      <p><i class="fa-solid fa-star"></i></p>
+    </div>
+    <p class="card_descr px-3"></p>
+    <div class="d-flex px-3 pb-2 mt-1">
+      <p class="card_price"><%= teckel.price %></p>
+    </div>
   <% end %>
+</div>
+<%= link_to "create", new_teckel_path %>
+
+<% if user_signed_in? %>
+  <%= link_to "My profile", profile_path %>
+  <%= link_to "Logout",  destroy_user_session_path, method: :delete %>
+  <% else %>
+  <%= link_to "Login", user_session_path%>
 <% end %>
