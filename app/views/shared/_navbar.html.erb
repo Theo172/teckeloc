@@ -1,0 +1,23 @@
+<header class="header">
+  <div class="header__logo">
+    <%= image_tag 'teckel', class:'teck', alt:'teckel' %>
+  </div>
+
+  <div class="header__search">
+    <input id= "address" type="text" placeholder="Address">
+    <span></span>
+    <input id="dates" type="date" placeholder="dates">
+    <span></span>
+  </div>
+
+  <div class="dropdown-center">
+    <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">
+      <%= image_tag 'teckel-item', alt:"teckel", class:"avatar dropdown-toggle" %> for more
+    </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Log-in</a></li>
+        <li><a class="dropdown-item" href="#">Dashboard</a></li>
+        <li><a class="dropdown-item" href="#">Add a new puppy</a></li>
+      </ul>
+  </div>
+</header>
