@@ -1,6 +1,4 @@
 class ReservationsController < ApplicationController
-  # before_action :set_params, only: [:show, :new, :create, :destroy]
-
   def show
   end
 
