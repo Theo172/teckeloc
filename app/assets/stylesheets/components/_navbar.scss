@@ -6,7 +6,8 @@
 	align-items: center;
 	box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
 	justify-content: space-between;
-	position: fixed;
+  position: sticky;
+  margin-bottom: 40px;
 	width: 100%;
 	z-index: 2;
 	background: white;
