@@ -2,3 +2,7 @@
 <p><%= @teckel.user.username %></p>
  <%= cl_image_tag @teckel.photo.key, height: 300, width: 400, crop: :fill %>
 <%= link_to "back", teckels_path %>
+
+<%= link_to "Book this cutie", teckels_path, class:"btn btn-cutie btn-link"%>
+<%= link_to "Confirmation", teckels_path, class:"btn btn-cutie btn-link"%>
+<%= link_to "Decline", teckels_path, class:"btn btn-cancel btn-decline-link"%>
