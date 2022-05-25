@@ -29,6 +29,6 @@ class TeckelsController < ApplicationController
   end
 
   def teckel_params
-    params.require(:teckel).permit(:name, :species, :hair, :color, :age, :sex, :address, :special_features, :description, :anecdote, :price)
+    params.require(:teckel).permit(:name, :species, :hair, :color, :age, :sex, :address, :special_features, :description, :anecdote, :price, :photo)
   end
 end
