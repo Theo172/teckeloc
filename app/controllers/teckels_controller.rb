@@ -22,6 +22,15 @@ class TeckelsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @teckel.update(teckel_params)
+
+    redirect_to teckel_path(@teckel)
+  end
+
   private
 
   def set_params
