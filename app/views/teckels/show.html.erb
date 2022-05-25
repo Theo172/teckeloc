@@ -1,3 +1,4 @@
 <h1><%= @teckel.name %></h1>
+<p><%= @teckel.user.username %></p>
  <%= cl_image_tag @teckel.photo.key, height: 300, width: 400, crop: :fill %>
 <%= link_to "back", teckels_path %>
