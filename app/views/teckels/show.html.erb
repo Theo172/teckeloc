@@ -1,8 +1,42 @@
-<%= @teckel.name %>
-<%= cl_image_tag @teckel.photo.key, height: 300, width: 400, crop: :fill %>
+<div class="container-show">
+  <div class="container-card">
+    <div class="card-show-img">
+      <%= cl_image_tag @teckel.photo.key, height: 300, width: 400, crop: :fill %>
+    </div>
+    <div class="card-show">
+      <h4> Meet our adorable <%= @teckel.name %></h4>
+    </div>
+    <hr>
+    <div>
+      <p>You can run with <%= @teckel.name %> with a max of 4:50/min</p>
+      <p>You can feed him anything except chocolate</p>
+      <p>Free canceling until 48h before</p>
+    </div>
+    <hr>
+    <div>
+      <p>How that service works ? Teckeloc is a simple simple services where you can rent a Teckel from his owner. The owner rent his dog for a stated duration. This does not mean this is your dog but that you can take out or pet him as he pleased. The dog is human being and can’t be forced to do anything, Assuming you already knew that no refund are possible because the dog didn’t act as you expected.</p>
+    </div>
+  </div>
+
+  <div class="container-recap">
+    <div class="card-show-img">
+      <%= cl_image_tag @teckel.photo.key, height: 150, width: 200, crop: :fill %>
+    </div>
+     <div>
+      <h4>Calendar</h4>
+    </div>
+    <div>
+      <h4>Price detail</h4>
+    </div>
+    <div>
+      <%= link_to "Book my cutie", teckels_path, class:'btn btn-cutie btn-link' %>
+    </div>
+  </div>
+</div>
+
+
 <% if user_signed_in? %>
     <%= link_to "edit", edit_teckel_path(@teckel) %>
     <%= link_to "delete", teckel_path(@teckel), method: :delete%>
   <% end %>
 <%= link_to "Back to Home page", teckels_path %>
-
