@@ -29,10 +29,12 @@
 
 		&:hover {
 			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+      border: 2px solid #54BAB9;
 		}
 		input, button {
 			background: transparent;
-			height: 48px;
+			height: 38px;
+      width: 800px;
 			padding: 0 16px;
 			display: flex;
 			align-items: center;
@@ -71,7 +73,9 @@
 .dropdown-toggle:hover{
   background-color: white;
   color: #54BAB9;
+  border: solid 2px #54BAB9;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  font-weight: 500;
 }
 .btn-link:focus{
   outline: none;

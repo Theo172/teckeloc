@@ -1,6 +1,5 @@
 class ReservationsController < ApplicationController
 
-
   def new
     @teckel = Teckel.find(params[:teckel_id])
     @reservation = Reservation.new
@@ -18,7 +17,6 @@ class ReservationsController < ApplicationController
     else
       render :new
     end
-
   end
 
   private
