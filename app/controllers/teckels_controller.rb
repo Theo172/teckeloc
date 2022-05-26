@@ -48,6 +48,10 @@ class TeckelsController < ApplicationController
     redirect_to profile_path
   end
 
+  def payment
+    @user = current_user
+  end
+
   private
 
   def set_params
