@@ -7,7 +7,7 @@
 
     <%= form_tag teckels_path, method: :get do %>
 
-      <%= text_field_tag :query, params[:query], placeholder: "Find your dog ..." %>
+      <%= text_field_tag :query, params[:query], placeholder: "Find your dog ...", class: "header__search"%>
 
     <% end %>
 
