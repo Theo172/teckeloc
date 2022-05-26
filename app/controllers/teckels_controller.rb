@@ -1,21 +1,30 @@
 class TeckelsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :edit, :destroy, :update]
-  before_action :set_params, only: [:show, :edit, :update, :destroy]
+  before_action :set_params, only: [:show, :edit, :update, :destroy, :payment]
+
 
   def index
-    @teckels = Teckel.all
+    if params[:query].present?
+      @teckels = policy_scope(Teckel).search_by_teckel_characteristic(params[:query])
+    else
+      @teckels = policy_scope(Teckel).order(created_at: :desc)
+    end
   end
 
   def show
     @reservation = Reservation.new
+    authorize @teckel
   end
 
   def new
     @teckel = current_user.teckels.new
+    authorize @teckel
   end
 
   def create
     @teckel = current_user.teckels.new(teckel_params)
+
+    authorize @teckel
     if @teckel.save
       redirect_to teckel_path(@teckel)
     else
@@ -24,18 +33,23 @@ class TeckelsController < ApplicationController
   end
 
   def edit
+    authorize @teckel
   end
 
   def update
     @teckel.update(teckel_params)
-
+    authorize @teckel
     redirect_to profile_path
   end
 
   def destroy
     @teckel.destroy
-
+    authorize @teckel
     redirect_to profile_path
+  end
+
+  def payment
+    @user = current_user
   end
 
   private

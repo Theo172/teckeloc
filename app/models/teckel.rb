@@ -1,5 +1,6 @@
 class Teckel < ApplicationRecord
   belongs_to :user
+  has_many :reservations, dependent: :destroy
   # ouvrir un ticket :
   # belongs_to :owner, class_name: "User", foreign_key: :user_id
 
@@ -18,4 +19,11 @@ class Teckel < ApplicationRecord
 
   has_one_attached :photo
   validates :photo, presence: true
+
+  include PgSearch::Model
+  pg_search_scope :search_by_teckel_characteristic,
+    against: [ :name, :species, :hair, :color, :age, :sex, :special_features, :description, :anecdote ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 end
