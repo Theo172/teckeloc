@@ -1,6 +1,5 @@
 class ReservationsController < ApplicationController
 
-
   def new
     @teckel = Teckel.find(params[:teckel_id])
     @reservation = Reservation.new
@@ -13,16 +12,13 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
     @reservation.teckel = @teckel
     authorize @reservation
-    if @reservation.saveg
-      redirect_to profile_path
     if @reservation.save
       redirect_to payment_path(@teckel)
     else
       render :new
     end
-
   end
-    
+
   private
 
   def reservation_params

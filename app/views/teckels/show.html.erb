@@ -17,12 +17,13 @@
       <p>How that service works ? Teckeloc is a simple simple services where you can rent a Teckel from his owner. The owner rent his dog for a stated duration. This does not mean this is your dog but that you can take out or pet him as he pleased. The dog is human being and can’t be forced to do anything, Assuming you already knew that no refund are possible because the dog didn’t act as you expected.</p>
     </div>
   </div>
-
+   <% if @teckel.user != current_user %>
   <div class="container-recap">
     <div class="card-show-img">
       <%= cl_image_tag @teckel.photo.key, height: 150, width: 200, crop: :fill %>
     </div>
      <div>
+
       <h4>Calendar</h4>
        <%= simple_form_for [@teckel, @reservation] do |f| %>
         <%= f.input :starting_date %>
@@ -37,30 +38,18 @@
       </div>
       <% end %>
     </div>
-
   </div>
 </div>
-
+<% end %>
 
 <% if user_signed_in? %>
-
-
   <% if policy(@teckel).edit? %>
     <%= link_to "Update", edit_teckel_path(@teckel) %>
   <% end %>
   <% if policy(@teckel).destroy? %>
     <%= link_to "Delete", teckel_path(@teckel), method: :delete,  data: { confirm: "Are you sure?" } %>
   <% end %>
-  <% end %>
-  <% if @teckel.user != current_user %>
-  <%= simple_form_for [@teckel, @reservation] do |f| %>
-  <%= f.input :starting_date %>
-  <%= f.input :ending_date %>
-  <%= f.button :submit %>
-  <% end %>
-
 <% end %>
-
 
 <%= link_to "back", teckels_path %>
 <%= link_to "Back to Home page", teckels_path %>
