@@ -1,7 +1,7 @@
 <header class="header">
   <div class="header__logo">
     <%= link_to root_path do %>
-    <%= image_tag 'teckel', class:'teck', alt:'teckel' %>
+    <img class="teck" src="https://res.cloudinary.com/dfaupoje1/image/upload/v1653487862/teckel/teckel_ummbhi.jpg" alt="">
     <% end %>
   </div>
 
@@ -14,7 +14,7 @@
 
   <div class="dropdown-center">
     <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">
-      <%= image_tag 'teckel-item', alt:"teckel", class:"avatar dropdown-toggle" %> for more
+      <img src="https://res.cloudinary.com/dfaupoje1/image/upload/v1653487869/teckel/teckel-item_p2odzz.jpg" class="avatar dropdown-toggle" alt="teckel">for more
     </button>
       <ul class="dropdown-menu">
         <% if user_signed_in? %>

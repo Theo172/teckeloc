@@ -52,3 +52,15 @@
       </div>
     </div>
 </div>
+
+<% @user.teckels.each do |teckel| %>
+  <%= teckel.name %>
+   <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+
+<% @user.reservations.each do |reservation| %>
+   <%= reservation.teckel.name %>
+   <%= reservation.starting_date %>
+   <%= reservation.ending_date %>
+<% end %>
