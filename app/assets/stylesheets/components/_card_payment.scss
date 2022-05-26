@@ -1,0 +1,44 @@
+h4 {
+  text-align: center;
+}
+
+.container-payment {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.container-payment-card {
+  background-color: white;
+  width: 700px;
+  padding: 40px 60px;
+
+}
+
+.section-payment {
+  padding: 20px 20px;
+}
+
+.card-payment-img {
+  text-align: center;
+}
+
+.section-border {
+  border: 1px solid #54BAB9;
+}
+
+.section-border-empty {
+  border-bottom: none;
+  height: 50px;
+  text-align: center;
+  padding-top: 10px;
+  color: #54BAB9;
+}
+
+.logo {
+  width: 60px;
+}
+
+.img-center {
+  text-align:center;
+}

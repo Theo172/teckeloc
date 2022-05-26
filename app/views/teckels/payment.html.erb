@@ -1,5 +1,8 @@
 <div class="container-payment">
   <div class="container-payment-card">
+    <div class="img-center">
+      <img class="logo" src="https://res.cloudinary.com/dfaupoje1/image/upload/v1653487862/teckel/teckel_ummbhi.jpg" alt="">
+    </div>
     <div class="section-payment">
       <p>
         Hi <%= @user.username %> we are now confirming your reservation !
@@ -10,18 +13,27 @@
       </p>
     </div>
     <div class="section-payment">
-      <h2><%= @teckel.name %></h2>
-      <% @user.teckels.each do |teckel| %>
-        <%= teckel.name %>
-        <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class:'card-show-img' %>
-      <% end %>
+      <div class="img-center">
+        <h4><%= @teckel.name %></h4>
+        <%= cl_image_tag @teckel.photo.key, height: 200, width: 300, crop: :fill, class:'card-payment-img' %>
+      </div>
     </div>
-    <div class="section-payment">
+    <div class="section-border section-border-empty">
+      <p>Reservation recap</p>
+    </div>
+    <div class="section-payment section-border">
       <% @user.reservations.each do |reservation| %>
         <%= reservation.teckel.name %>
         <%= reservation.starting_date %>
         <%= reservation.ending_date %>
       <% end %>
+    </div>
+    <div class="section-payment">
+      <p>
+        Thank you <%= @user.username %> for booking our cutie <%= @teckel.name %>,
+        we hope you will have a great experience !
+        Best Regards from Teckeloc team.
+      </p>
     </div>
   </div>
 </div>
