@@ -43,8 +43,8 @@
 
 
 <% if user_signed_in? %>
-
-
+    <%= link_to "edit", edit_teckel_path(@teckel) %>
+    <%= link_to "delete", teckel_path(@teckel), method: :delete %>
   <% if policy(@teckel).edit? %>
     <%= link_to "Update", edit_teckel_path(@teckel) %>
   <% end %>
