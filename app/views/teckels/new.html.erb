@@ -1,17 +1,28 @@
-<%= simple_form_for @teckel do |f| %>
-  <%= f.input :name %>
-  <%= f.input :hair, collection: Teckel::HAIR %>
-  <%= f.input :species, collection: Teckel::SPECIES %>
-  <%= f.input :color %>
-  <%= f.input :age %>
-  <%= f.input :sex, collection: Teckel::SEX  %>
-  <%= f.input :address %>
-  <%= f.input :special_features %>
-  <%= f.input :description %>
-  <%= f.input :anecdote %>
-  <%= f.input :price %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
+<div class="form_background mb-5">
+  <%= simple_form_for @teckel do |f| %>
+  <div class="d-flex">
+    <div class="form_part me-5">
+    <%= f.input :name, input_html: { class: "form_input" } %>
+    <%= f.input :hair, collection: Teckel::HAIR, input_html: { class: "form_input" } %>
+    <%= f.input :species, collection: Teckel::SPECIES, input_html: { class: "form_input" } %>
+    <%= f.input :color, input_html: { class: "form_input" } %>
+    <%= f.input :age, input_html: { class: "form_input" } %>
+    <%= f.input :sex, collection: Teckel::SEX, input_html: { class: "form_input" }  %>
+    <%= f.input :address, input_html: { class: "form_input" } %>
+  </div>
+  <div class="form_part">
+    <%= f.input :special_features, input_html: { class: "form_input" } %>
+    <%= f.input :description, input_html: { class: "form_input" } %>
+    <%= f.input :anecdote, input_html: { class: "form_input" } %>
+    <%= f.input :price, input_html: { class: "form_input" } %>
+    <%= f.input :photo, as: :file, input_html: { class: "form_input" } %>
+      <div class="d-flex justify-content-between align-items-center mt-5">
+        <%= f.button :submit, class: "btn-cutie" %>
+        <%= link_to teckels_path do %>
+          <button class="btn-cutie">Back</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
-
-<%= link_to "back", teckels_path %>
+</div>

@@ -1,0 +1,20 @@
+.form_input {
+  border: 1px solid #54BAB9;
+  border-radius: 24px;
+}
+
+.form_background {
+  border-radius: 15px;
+  padding: 25px;
+  width: 80%;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.form_part {
+  width: 50%;
+  &:input {
+    background-color: aqua;
+  }
+}
