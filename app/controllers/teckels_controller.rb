@@ -1,6 +1,6 @@
 class TeckelsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :edit, :destroy, :update]
-  before_action :set_params, only: [:show, :edit, :update, :destroy, :payment]
+  before_action :set_params, only: [:show, :edit, :update, :destroy]
 
 
   def index

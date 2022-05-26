@@ -1,7 +1,7 @@
 
 
 <h1 class="profile_title">Profile</h1>
-<%# <%= @user.username%>
+<%= @user.username%>
 <hr>
 
 <div class="profile_container">
@@ -46,21 +46,21 @@
           </div>
         </div>
       <% end%>
-      <div class="reservation_link">
-        <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
-        <%= link_to "delete",  reservation_path(@reservation), method: :delete, class:"btn btn-cancel btn-link" %>
-      </div>
+
     </div>
 </div>
 
-<% @user.teckels.each do |teckel| %>
-  <%= teckel.name %>
-   <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
 
 
-<% @user.reservations.each do |reservation| %>
-   <%= reservation.teckel.name %>
-   <%= reservation.starting_date %>
-   <%= reservation.ending_date %>
+
+<% @reservations.each do |reservation| %>
+  <% if Teckel.find(reservation.teckel_id).user_id  == current_user.id %>
+    <%= simple_form_for [reservation.teckel, reservation] do |f| %>
+    <%= f.input :status, collection: Reservation::STATUS %>
+    <%= f.button :submit %>
+    <% end %>
+  <% else %>
+    <%= reservation.status %>
+
+  <% end %>
 <% end %>

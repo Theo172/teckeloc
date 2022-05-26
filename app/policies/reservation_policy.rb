@@ -6,8 +6,11 @@ class ReservationPolicy < ApplicationPolicy
   def create?
     true
   end
-  def destroy?
-
+  def edit?
+    update?
+  end
+  def update?
+    record.user == user
   end
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!

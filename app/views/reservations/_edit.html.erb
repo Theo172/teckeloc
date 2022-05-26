@@ -1,0 +1,4 @@
+  <%= simple_form_for [user, reservation] do |f| %>
+  <%= f.input :status, collection: Reservation::STATUS %>
+  <%= f.button :submit %>
+  <% end %>
