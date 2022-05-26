@@ -50,6 +50,7 @@ class TeckelsController < ApplicationController
 
   def payment
     @user = current_user
+    authorize @teckel
   end
 
   private

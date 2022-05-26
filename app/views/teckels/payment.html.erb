@@ -22,11 +22,8 @@
       <p>Reservation recap</p>
     </div>
     <div class="section-payment section-border">
-      <% @user.reservations.each do |reservation| %>
-        <%= reservation.teckel.name %>
-        <%= reservation.starting_date %>
-        <%= reservation.ending_date %>
-      <% end %>
+      <%# <% @user.reservations %>
+      <%# <%= @user.reservations.ending_date %>
     </div>
     <div class="section-payment">
       <p>
