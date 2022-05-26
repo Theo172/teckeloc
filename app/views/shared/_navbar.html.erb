@@ -6,10 +6,9 @@
   </div>
 
   <div class="header__search">
-    <input id= "address" type="text" placeholder="Address">
-    <span></span>
-    <input id="dates" type="date" placeholder="dates">
-    <span></span>
+    <%= form_tag teckels_path, method: :get do %>
+      <%= text_field_tag :query, params[:query], placeholder: "Enter color, type, age etc..." %>
+    <% end %>
   </div>
 
   <div class="dropdown-center">
