@@ -65,15 +65,14 @@
         <div class="section-payment">
           <p>
             Hi <%= @user.username %> we are now confirming your reservation !
-            You will rent <%= reservation.teckel.name %> <%= @user.username %>
+            You will rent <%= reservation.teckel.name %> from <%= @user.username %>
             from the 1rst of June to the 23rd August 2022.
-            Based on your rate of <%= reservation.teckel.price%> euros per night
-            your potential payout should be  <%=  %> euros.
+            Based on your rate of <%= reservation.teckel.price%>€ per night.
           </p>
         </div>
         <div class="section-payment">
           <div class="img-center">
-            <h4><%= reservation.teckel.name %></h4>
+            <h3 class="title_h3"><%= reservation.teckel.name %></h3>
             <%= cl_image_tag reservation.teckel.photo.key, class:'card-payment-img' %>
           </div>
         </div>
@@ -81,14 +80,17 @@
           <p>Reservation recap</p>
         </div>
         <div class="section-payment section-border">
-          <p>from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+          <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
           <% t = reservation.ending_date - reservation.starting_date %>
+          <p><%= reservation.teckel.price %>€ x <%= t.to_i %> nights</p>
           <p><%= t.to_i * reservation.teckel.price %>€</p>
         </div>
         <div class="section-payment">
           <p>
             Thank you <%= @user.username %> for booking our cutie <%= @user.teckels.name %>,
             we hope you will have a great experience !
+          </p>
+          <p>
             Best Regards from Teckeloc team.
           </p>
         </div>
