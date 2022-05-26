@@ -32,7 +32,7 @@
     <h3 class="title_h3">My reservations</h3>
       <% @user.teckels.each do |teckel|%>
           <%# <div class="teckel-description"> %>
-        <div class="card_background">
+        <div class="card_background card_background_profile">
         <div class="teckel_name"><%= teckel.name%></div>
           <%= cl_image_tag teckel.photo.key, crop: :fill, class: "card_img"%>
           <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
