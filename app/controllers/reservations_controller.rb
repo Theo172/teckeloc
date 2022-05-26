@@ -1,6 +1,4 @@
 class ReservationsController < ApplicationController
-  def show
-  end
 
   def new
     @teckel = Teckel.find(params[:teckel_id])
@@ -14,7 +12,7 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
     @reservation.teckel = @teckel
     authorize @reservation
-    if @reservation.save
+    if @reservation.savegit
       redirect_to profile_path
     else
       render :new
@@ -22,17 +20,7 @@ class ReservationsController < ApplicationController
 
   end
 
-  def destroy
-    @reservation.destroy
-    authorize @reservation
-    redirect_to profile_path
-  end
-
   private
-
-  def set_params
-    @reservation = Reservation.find(params[:id])
-  end
 
   def reservation_params
     params.require(:reservation).permit(:starting_date, :ending_date, :teckel_id, :user_id)

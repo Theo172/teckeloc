@@ -7,7 +7,7 @@ class ReservationPolicy < ApplicationPolicy
     true
   end
   def destroy?
-    true
+
   end
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
