@@ -2,8 +2,13 @@ class TeckelsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :edit, :destroy, :update]
   before_action :set_params, only: [:show, :edit, :update, :destroy, :payment]
 
+
   def index
-    @teckels = policy_scope(Teckel).order(created_at: :desc)
+    if params[:query].present?
+      @teckels = policy_scope(Teckel).search_by_teckel_characteristic(params[:query])
+    else
+      @teckels = policy_scope(Teckel).order(created_at: :desc)
+    end
   end
 
   def show
