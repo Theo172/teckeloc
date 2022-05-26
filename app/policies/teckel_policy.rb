@@ -18,10 +18,6 @@ class TeckelPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def payment?
-    record.user == user
-  end
-
   class Scope < Scope
     def resolve
       scope.all
