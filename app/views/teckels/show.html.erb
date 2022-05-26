@@ -1,15 +1,21 @@
 <%= @teckel.name %>
 <%= cl_image_tag @teckel.photo.key, height: 300, width: 400, crop: :fill %>
 <% if user_signed_in? %>
-    <%= link_to "edit", edit_teckel_path(@teckel) %>
-    <%= link_to "delete", teckel_path(@teckel), method: :delete%>
+
+  <% if policy(@teckel).edit? %>
+    <%= link_to "Update", edit_teckel_path(@teckel) %>
   <% end %>
+  <% if policy(@teckel).destroy? %>
+    <%= link_to "Delete", teckel_path(@teckel), method: :delete,  data: { confirm: "Are you sure?" } %>
+  <% end %>
+  <% end %>
+  <% if @teckel.user != current_user %>
   <%= simple_form_for [@teckel, @reservation] do |f| %>
   <%= f.input :starting_date %>
   <%= f.input :ending_date %>
   <%= f.button :submit %>
+  <% end %>
 <% end %>
 
 <%= link_to "back", teckels_path %>
 <%= link_to "Back to Home page", teckels_path %>
-

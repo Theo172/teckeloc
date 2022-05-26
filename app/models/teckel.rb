@@ -1,5 +1,6 @@
 class Teckel < ApplicationRecord
   belongs_to :user
+  has_many :reservations, dependent: :destroy
   # ouvrir un ticket :
   # belongs_to :owner, class_name: "User", foreign_key: :user_id
 

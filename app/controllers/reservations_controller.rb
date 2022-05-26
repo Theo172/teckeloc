@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
   def new
     @teckel = Teckel.find(params[:teckel_id])
     @reservation = Reservation.new
+    authorize @reservation
   end
 
   def create
@@ -12,15 +13,18 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = current_user.id
     @reservation.teckel = @teckel
+    authorize @reservation
     if @reservation.save
-      redirect_to profile_path()
+      redirect_to profile_path
     else
       render :new
     end
+
   end
 
   def destroy
     @reservation.destroy
+    authorize @reservation
     redirect_to profile_path
   end
 
