@@ -2,6 +2,7 @@ class ReservationsController < ApplicationController
   def show
   end
 
+
   def new
     @teckel = Teckel.find(params[:teckel_id])
     @reservation = Reservation.new
@@ -25,6 +26,11 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     authorize @reservation
+    redirect_to profile_path
+  end
+
+  def destroy
+    @reservation.destroy
     redirect_to profile_path
   end
 

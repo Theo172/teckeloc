@@ -1,0 +1,52 @@
+// .profile-header{
+//   display: flex;
+//   justify-content: center;
+// }
+
+.profile_title{
+  display: flex;
+  justify-content: center;
+  color: #54BAB9;
+}
+
+.title_h3 {
+  font-size: large;
+  font-weight: bold;
+  color: #54BAB9;
+  text-shadow: 1px 1px 1px #ffbfcb6c;
+}
+
+.profile_container{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+}
+
+.my_teckel_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card_background:hover {
+  animation: none;
+}
+.reservation_link{
+  display: flex;
+  justify-content: space-around;
+}
+
+.teckel_name {
+  margin: 10px;
+  font-size: large;
+  font-weight: bold;
+  color: #FFBFCB;
+  text-shadow: 1px 1px 1px #ffbfcb6c;
+}
+
+.teckel_age{
+  text-align: center;
+}
+// .teckel_img {
+//   border-radius: 50%;
+// }
