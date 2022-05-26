@@ -48,19 +48,51 @@
       <% end%>
       <div class="reservation_link">
         <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
-        <%= link_to "delete",  reservation_path(@reservation), method: :delete, class:"btn btn-cancel btn-link" %>
       </div>
     </div>
+  </div>
 </div>
+  <hr>
 
-<% @user.teckels.each do |teckel| %>
-  <%= teckel.name %>
-   <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-
-
-<% @user.reservations.each do |reservation| %>
-   <%= reservation.teckel.name %>
-   <%= reservation.starting_date %>
-   <%= reservation.ending_date %>
-<% end %>
+<div>
+ <h3 class="title_h3">My reservations as renter</h3>
+  <div class="container-payment">
+    <% @user.reservations.each do |reservation| %>
+      <div class="container-payment-card">
+        <div class="img-center">
+          <img class="logo" src="https://res.cloudinary.com/dfaupoje1/image/upload/v1653487862/teckel/teckel_ummbhi.jpg" alt="">
+        </div>
+        <div class="section-payment">
+          <p>
+            Hi <%= @user.username %> we are now confirming your reservation !
+            You will rent <%= reservation.teckel.name %> <%= @user.username %>
+            from the 1rst of June to the 23rd August 2022.
+            Based on your rate of <%= reservation.teckel.price%> euros per night
+            your potential payout should be  <%=  %> euros.
+          </p>
+        </div>
+        <div class="section-payment">
+          <div class="img-center">
+            <h4><%= reservation.teckel.name %></h4>
+            <%= cl_image_tag reservation.teckel.photo.key, class:'card-payment-img' %>
+          </div>
+        </div>
+        <div class="section-border section-border-empty">
+          <p>Reservation recap</p>
+        </div>
+        <div class="section-payment section-border">
+          <p>from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+          <% t = reservation.ending_date - reservation.starting_date %>
+          <p><%= t.to_i * reservation.teckel.price %>€</p>
+        </div>
+        <div class="section-payment">
+          <p>
+            Thank you <%= @user.username %> for booking our cutie <%= @user.teckels.name %>,
+            we hope you will have a great experience !
+            Best Regards from Teckeloc team.
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
