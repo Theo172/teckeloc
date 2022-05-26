@@ -24,18 +24,26 @@
     </div>
      <div>
       <h4>Calendar</h4>
+       <%= simple_form_for [@teckel, @reservation] do |f| %>
+        <%= f.input :starting_date %>
+        <%= f.input :ending_date %>
+      <div>
+        <p>
+          Price detail :  <%= @teckel.price %>€/night
+        </p>
+      </div>
+      <div class="card-show-recap">
+       <p><%= f.button :submit, "Book my cutie", class:'btn btn-cutie btn-link' %></p>
+      </div>
+      <% end %>
     </div>
-    <div>
-      <h4>Price detail</h4>
-    </div>
-    <div>
-      <%= link_to "Book my cutie", teckels_path, class:'btn btn-cutie btn-link' %>
-    </div>
+
   </div>
 </div>
 
 
 <% if user_signed_in? %>
+
 
   <% if policy(@teckel).edit? %>
     <%= link_to "Update", edit_teckel_path(@teckel) %>
@@ -50,7 +58,9 @@
   <%= f.input :ending_date %>
   <%= f.button :submit %>
   <% end %>
+
 <% end %>
+
 
 <%= link_to "back", teckels_path %>
 <%= link_to "Back to Home page", teckels_path %>

@@ -1,0 +1,39 @@
+<div class="container-payment">
+  <div class="container-payment-card">
+    <div class="img-center">
+      <img class="logo" src="https://res.cloudinary.com/dfaupoje1/image/upload/v1653487862/teckel/teckel_ummbhi.jpg" alt="">
+    </div>
+    <div class="section-payment">
+      <p>
+        Hi <%= @user.username %> we are now confirming your reservation !
+        You will rent <%= @teckel.name %> <%= @teckel.user.username %>
+        from the 1rst of June to the 23rd August 2022.
+        Based on your rate of <%= @teckel.price %> euros per night,
+        your potential payout should be  <%=  %> euros.
+      </p>
+    </div>
+    <div class="section-payment">
+      <div class="img-center">
+        <h4><%= @teckel.name %></h4>
+        <%= cl_image_tag @teckel.photo.key, height: 200, width: 300, crop: :fill, class:'card-payment-img' %>
+      </div>
+    </div>
+    <div class="section-border section-border-empty">
+      <p>Reservation recap</p>
+    </div>
+    <div class="section-payment section-border">
+      <% @user.reservations.each do |reservation| %>
+        <%= reservation.teckel.name %>
+        <%= reservation.starting_date %>
+        <%= reservation.ending_date %>
+      <% end %>
+    </div>
+    <div class="section-payment">
+      <p>
+        Thank you <%= @user.username %> for booking our cutie <%= @teckel.name %>,
+        we hope you will have a great experience !
+        Best Regards from Teckeloc team.
+      </p>
+    </div>
+  </div>
+</div>
