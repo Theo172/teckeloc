@@ -35,3 +35,27 @@ hr {
 .card-show {
   margin: 20px 20px;
 }
+
+
+.card-show-recap {
+  text-align: center;
+  margin: 10px 0px 0px 0px;
+}
+
+
+.container-payment {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.container-payment-card {
+  background-color: white;
+  width: 700px;
+  padding: 20px 20px;
+}
+
+.section-payment {
+  padding: 20px 20px;
+}

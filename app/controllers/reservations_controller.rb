@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
     @reservation.teckel = @teckel
     if @reservation.save
-      redirect_to profile_path()
+      redirect_to payment_path(@teckel)
     else
       render :new
     end
