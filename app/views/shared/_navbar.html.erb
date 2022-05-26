@@ -5,11 +5,10 @@
     <% end %>
   </div>
 
-  <div class="header__search">
     <%= form_tag teckels_path, method: :get do %>
-      <%= text_field_tag :query, params[:query], placeholder: "Enter color, type, age etc..." %>
+      <%= text_field_tag :query, params[:query], placeholder: "Enter color, type, age etc...", class: "header__search" %>
     <% end %>
-  </div>
+
 
   <div class="dropdown-center">
     <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">
