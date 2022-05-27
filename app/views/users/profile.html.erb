@@ -37,7 +37,6 @@
         <p class="description"> <%= reservation.teckel.description %></p>
         <p class="p-padding">Dates : <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
         <p class="p-padding">Renter : <%= reservation.user.username %></p>
-        <% end  %>
         <div class='p-padding'>
           <%= simple_form_for [reservation.teckel, reservation] do |f| %>
             <%= f.input :status, collection: Reservation::STATUS %>
@@ -55,6 +54,13 @@
     </div>
   <% end %>
 </div>
+  <% if @asked_reservations.empty?%>
+  <% else %>
+    <div class="reservation_link">
+      <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
+    </div>
+   <% end %>
+
 <hr>
 
 <div>
