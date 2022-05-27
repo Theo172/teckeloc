@@ -6,13 +6,14 @@
 <div class="container">
   <% @user.teckels.each do |teckel|%>
     <div class="card_background">
-         <%= link_to teckel_path(teckel) do %>
+        <%= link_to teckel_path(teckel) do %>
         <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
         <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
           <p>Meet <%= teckel.name %></p>
           <p>5<i class="fa-solid fa-star"></i></p>
         </div>
         <p class="card_descr px-3"></p>
+        <p class="p-padding-payment"><%= teckel.description %></p>
         <div class="d-flex px-3 pb-2 mt-1">
           <p class="card_price"><%= teckel.price %>€</p>
         </div>
@@ -28,29 +29,37 @@
   <hr>
 
   <h3 class="title_h3">My reservations</h3>
-  <div class="container">
-  <% @user.teckels.each do |teckel|%>
+  <div class="container-payment">
+   <% @asked_reservations.each do |reservation| %>
     <div class="card_background">
-         <%= link_to teckel_path(teckel) do %>
-        <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
-        <p class="teckel_name description"><%= teckel.name %></p>
-        <p class="description"> <%= teckel.description %></p>
+         <%= link_to teckel_path(reservation.teckel) do %>
+        <%= cl_image_tag reservation.teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
+        <p class="teckel_name description"><%= reservation.teckel.name %></p>
+        <p class="description"> <%= reservation.teckel.description %></p>
+        <p class="p-padding">Dates : <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+        <p class="p-padding">Renter : <%= reservation.user.username %></p>
+          <%= simple_form_for [reservation.teckel, reservation] do |f| %>
+            <%= f.input :status, collection: Reservation::STATUS, class:'p-padding' %>
+            <%= f.button :submit, class:'p-padding' %>
+          <% end %>
         <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
-          <p> <%= teckel.age %> years old</p>
+          <p> <%= reservation.teckel.age %> years old</p>
           <p>5<i class="fa-solid fa-star"></i></p>
         </div>
         <p class="card_descr px-3"></p>
         <div class="d-flex px-3 pb-2 mt-1">
-          <p class="card_price"><%= teckel.price %>€ per night</p>
+          <p class="card_price"><%= reservation.teckel.price %>€ per night</p>
         </div>
       <% end  %>
     </div>
   <% end %>
 </div>
-
-  <div class="reservation_link">
-    <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
-  </div>
+  <% if @asked_reservations.empty?%>
+  <% else %>
+    <div class="reservation_link">
+      <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
+    </div>
+   <% end %>
 
 <hr>
 
@@ -128,15 +137,3 @@
     <% end %>
   </div>
 </div>
-<hr>
-<h3 class="title_h3">Pending reservation</h3>
-
-<% @asked_reservations.each do |reservation| %>
-  <p>Teckel : <%= reservation.teckel.name %></p>
-  <p>Dates : <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
-  <p>Locator : <%= reservation.user.username %></p>
-  <%= simple_form_for [reservation.teckel, reservation] do |f| %>
-    <%= f.input :status, collection: Reservation::STATUS %>
-    <%= f.button :submit %>
-  <% end %>
-<% end %>
