@@ -1,13 +1,16 @@
 class ReservationPolicy < ApplicationPolicy
 
-  def new
+  def new?
     create?
   end
   def create?
     true
   end
-  def destroy?
-
+  def edit?
+    update?
+  end
+  def update?
+    record.teckel.user == user
   end
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
