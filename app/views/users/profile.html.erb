@@ -65,12 +65,13 @@
         <div class="img-center">
           <img class="logo" src="https://res.cloudinary.com/dfaupoje1/image/upload/v1653487862/teckel/teckel_ummbhi.jpg" alt="">
         </div>
-        <div class="section-payment">
+        <% if reservation.status == "Accept" %>
+         <div class="section-payment">
           <p>
-            Hi <%= @user.username %> we are now confirming your reservation !
+            Hi <%= @user.username %> we just confirmed your reservation !
             You will rent <%= reservation.teckel.name %> from <%= @user.username %>
-            from the 1rst of June to the 23rd August 2022.
-            Based on your rate of <%= reservation.teckel.price%>€ per night.
+            from <%= reservation.starting_date %> to the <%= reservation.ending_date %>.
+            Based on the rate of <%= reservation.teckel.price%>€ per night.
           </p>
         </div>
         <div class="section-payment">
@@ -82,7 +83,6 @@
         <div class="section-border section-border-empty">
           <p>Reservation recap</p>
         </div>
-        <% if reservation.status == "Accept" %>
           <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
             <% t = reservation.ending_date - reservation.starting_date %>
@@ -97,6 +97,21 @@
             </p>
           </div>
         <% elsif reservation.status == "Decline" %>
+         <div class="section-payment">
+          <p>
+            Hi <%= @user.username %> we are sorry but your reservation has been declined
+            for the rental of <%= reservation.teckel.name %> from <%= @user.username %>.
+          </p>
+        </div>
+        <div class="section-payment">
+          <div class="img-center">
+            <h3 class="title_h3"><%= link_to reservation.teckel.name, teckel_path(reservation.teckel) %></h3>
+            <%= cl_image_tag reservation.teckel.photo.key, class:'card-payment-img' %>
+          </div>
+        </div>
+        <div class="section-border section-border-empty">
+          <p>Reservation recap</p>
+        </div>
           <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
             <% t = reservation.ending_date - reservation.starting_date %>
@@ -110,6 +125,23 @@
             </p>
           </div>
         <% else %>
+         <div class="section-payment">
+          <p>
+            Hi <%= @user.username %> we are now waiting to confirm your reservation !
+            You want to rent <%= reservation.teckel.name %> from <%= @user.username %>
+            from from <%= reservation.starting_date %> to the <%= reservation.ending_date %>.
+            Based on the rate of <%= reservation.teckel.price%>€ per night.
+          </p>
+        </div>
+        <div class="section-payment">
+          <div class="img-center">
+            <h3 class="title_h3"><%= link_to reservation.teckel.name, teckel_path(reservation.teckel) %></h3>
+            <%= cl_image_tag reservation.teckel.photo.key, class:'card-payment-img' %>
+          </div>
+        </div>
+        <div class="section-border section-border-empty">
+          <p>Reservation recap</p>
+        </div>
         <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
             <% t = reservation.ending_date - reservation.starting_date %>
