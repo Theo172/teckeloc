@@ -3,7 +3,7 @@
 <hr>
 
 <h3 class="title_h3">my lovely teckels</h3>
-<div class="container">
+<div class="container-index">
   <% @user.teckels.each do |teckel|%>
     <div class="card_background">
         <%= link_to teckel_path(teckel) do %>
@@ -31,30 +31,31 @@
   <h3 class="title_h3">They want my teckel </h3>
   <div class="container-payment">
    <% @asked_reservations.each do |reservation| %>
-   <%= link_to  teckel_path(reservation.teckel) do%>
     <div class="card_background">
+      <%= link_to  teckel_path(reservation.teckel) do%>
         <%= cl_image_tag reservation.teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
         <p class="teckel_name description"><%= reservation.teckel.name %></p>
         <p class="description"> <%= reservation.teckel.description %></p>
         <p class="p-padding">Dates : <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
         <p class="p-padding">Renter : <%= reservation.user.username %></p>
         <div class='p-padding'>
-    <% end %>
           <%= simple_form_for [reservation.teckel, reservation] do |f| %>
             <%= f.input :status, collection: Reservation::STATUS %>
             <%= f.button :submit, class:'btn btn-cutie btn-link'%>
           <% end %>
         </div>
-        <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
-          <p> <%= reservation.teckel.age %> years old</p>
-          <p>5<i class="fa-solid fa-star"></i></p>
-        </div>
-        <p class="card_descr px-3"></p>
-        <div class="d-flex px-3 pb-2 mt-1">
-          <p class="card_price"><%= reservation.teckel.price %>€ per night</p>
-        </div>
+      <% end %>
+      <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
+        <p> <%= reservation.teckel.age %> years old</p>
+        <p>5<i class="fa-solid fa-star"></i></p>
+      </div>
+      <p class="card_descr px-3"></p>
+      <div class="d-flex px-3 pb-2 mt-1">
+        <p class="card_price"><%= reservation.teckel.price %>€ per night</p>
+      </div>
     </div>
   <% end %>
+    </div>
 </div>
 <hr>
 <div>
