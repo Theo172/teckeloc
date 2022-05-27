@@ -14,6 +14,7 @@ class ReservationsController < ApplicationController
     @reservation.teckel = @teckel
     authorize @reservation
     if @reservation.save
+      flash[:notice] = 'your reservation is pending!'
       redirect_to profile_path
     else
       render :new
