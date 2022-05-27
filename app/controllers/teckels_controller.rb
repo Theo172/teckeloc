@@ -9,8 +9,7 @@ class TeckelsController < ApplicationController
     else
       @teckels = policy_scope(Teckel).order(created_at: :desc)
     end
-    @teckels = Teckel.geocoded
-
+    @teckels = @teckels.geocoded
     @markers = @teckels.map do |teckel|
       {
         lat: teckel.latitude,
