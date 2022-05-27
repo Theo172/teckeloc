@@ -1,0 +1,4 @@
+<h4><%= link_to teckel.name, teckel_path(teckel) %></h4>
+<p><%= cl_image_tag teckel.photo.key, height: 60, width: 60, crop: :fill %> </p>
+<p><%= teckel.description %></p>
+<p><%= teckel.price %>€</p>

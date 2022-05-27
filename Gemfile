@@ -34,6 +34,7 @@ gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'bootstrap'
 gem 'devise'
 gem 'cloudinary', '~> 1.16.0'
+gem "geocoder"
 
 group :development, :test do
   gem 'pry-byebug'
@@ -63,7 +64,7 @@ group :test do
   gem 'webdrivers'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gems
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pundit'
