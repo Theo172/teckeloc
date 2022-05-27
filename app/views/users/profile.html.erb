@@ -38,6 +38,7 @@
           <p> <%= teckel.age %> years old</p>
           <p>5<i class="fa-solid fa-star"></i></p>
         </div>
+
         <p class="card_descr px-3"></p>
         <div class="d-flex px-3 pb-2 mt-1">
           <p class="card_price"><%= teckel.price %>€ per night</p>
@@ -97,3 +98,24 @@
     <% end %>
   </div>
 </div>
+
+      <% end%>
+      <div class="reservation_link">
+        <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
+        <%# <%= link_to "delete",  reservation_path(@reservation), method: :delete, class:"btn btn-cancel btn-link" %>
+      </div>
+    </div>
+</div>
+
+<% @user.teckels.each do |teckel| %>
+  <%= teckel.name %>
+   <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+
+<% @user.reservations.each do |reservation| %>
+   <%= reservation.teckel.name %>
+   <%= reservation.starting_date %>
+   <%= reservation.ending_date %>
+<% end %>
+

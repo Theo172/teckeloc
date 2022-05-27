@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
     @reservation.teckel = @teckel
     authorize @reservation
     if @reservation.save
-      redirect_to profile_path(@teckel)
+      redirect_to payment_path(@teckel)
     else
       render :new
     end
