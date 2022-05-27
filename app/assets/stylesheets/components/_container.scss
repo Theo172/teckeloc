@@ -5,3 +5,14 @@
   margin-bottom: 20px;
   padding-bottom: 20px;
 }
+
+.container-index {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+}
