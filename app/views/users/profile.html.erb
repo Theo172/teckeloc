@@ -32,7 +32,6 @@
   <div class="container-payment">
    <% @asked_reservations.each do |reservation| %>
     <div class="card_background">
-         <%= link_to teckel_path(reservation.teckel) do %>
         <%= cl_image_tag reservation.teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
         <p class="teckel_name description"><%= reservation.teckel.name %></p>
         <p class="description"> <%= reservation.teckel.description %></p>
@@ -50,7 +49,6 @@
         <div class="d-flex px-3 pb-2 mt-1">
           <p class="card_price"><%= reservation.teckel.price %>€ per night</p>
         </div>
-      <% end  %>
     </div>
   <% end %>
 </div>
@@ -89,7 +87,6 @@
           <p>Reservation recap</p>
         </div>
         <% if reservation.status == "Accept" %>
-        <div class="section-payment section-border">
           <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
             <% t = reservation.ending_date - reservation.starting_date %>
@@ -103,9 +100,7 @@
               Status : <%= reservation.status %>
             </p>
           </div>
-        </div>
         <% elsif reservation.status == "Decline" %>
-        <div class="section-payment section-border">
           <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
             <% t = reservation.ending_date - reservation.starting_date %>
@@ -118,7 +113,6 @@
               Status : <%= reservation.status %>
             </p>
           </div>
-        </div>
         <% else %>
         <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
