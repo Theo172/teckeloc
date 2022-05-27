@@ -26,33 +26,7 @@
       <% end%>
         <%= link_to "Add a pet",  new_teckel_path, class:"btn btn-cutie btn-link" %>
   </div>
-  <hr>
 
-  <div class="reservation my_teckel_container">
-    <h3 class="title_h3">My reservations</h3>
-      <% @user.teckels.each do |teckel|%>
-          <%# <div class="teckel-description"> %>
-        <div class="card_background card_background_profile">
-        <div class="teckel_name"><%= teckel.name%></div>
-          <%= cl_image_tag teckel.photo.key, crop: :fill, class: "card_img"%>
-          <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
-          <p class="card_descr px-3"><%= teckel.description %>
-          </p>
-          </div>
-          <div class="teckel_age"><%= teckel.age %></div>
-          <p>4,87 <i class="fa-solid fa-star"></i></p>
-          <div class="d-flex px-3 pb-2 mt-1">
-            <p class="card_price "><%= teckel.price %></p><p> / nuit</p>
-          </div>
-        </div>
-      <% end%>
-
-      <div class="reservation_link">
-        <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
-      </div>
-    </div>
-  </div>
-</div>
   <hr>
 
 
@@ -83,33 +57,47 @@
         <div class="section-border section-border-empty">
           <p>Reservation recap</p>
         </div>
+        <% if reservation.status == "Accept" %>
         <div class="section-payment section-border">
           <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
           <% t = reservation.ending_date - reservation.starting_date %>
-          <p><%= reservation.teckel.price %>€ x <%= t.to_i %> nights</p>
-          <p><%= t.to_i * reservation.teckel.price %>€</p>
-        </div>
-        <div class="section-payment">
+    x
           <p>
             Thank you <%= @user.username %> for booking our cutie <%= @user.teckels.name %>,
             we hope you will have a great experience !
           </p>
           <p>
             Best Regards from Teckeloc team.
+            <hr>
+            Status : <%= reservation.status %>
           </p>
         </div>
+        <% elsif reservation.status == "Decline" %>
+          <div class="section-payment section-border">
+          <p>Your reservation is decline by owner</p>
+          </div>
+          <hr>
+           Status : <%= reservation.status %>
+        <% else %>
+          <div class="section-payment section-border">
+          <p>Your reservation is pending...</p>
+          </div>
+           <hr>
+           Status : <%= reservation.status %>
+        <% end %>
       </div>
     <% end %>
-    <% @reservations.each do |reservation| %>
-  <% if Teckel.find(reservation.teckel_id).user_id  == current_user.id %>
-    <%= simple_form_for [reservation.teckel, reservation] do |f| %>
-    <%= f.input :status, collection: Reservation::STATUS %>
-    <%= f.button :submit %>
-    <% end %>
-  <% else %>
-    <%= reservation.status %>
-
-  <% end %>
-<% end %>
   </div>
 </div>
+<hr>
+<h3 class="title_h3">Pending reservation</h3>
+
+<% @asked_reservations.each do |reservation| %>
+  <p>Teckel : <%= reservation.teckel.name %></p>
+  <p>Dates : <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+  <p>Locator : <%= reservation.user.username %></p>
+  <%= simple_form_for [reservation.teckel, reservation] do |f| %>
+    <%= f.input :status, collection: Reservation::STATUS %>
+    <%= f.button :submit %>
+  <% end %>
+<% end %>

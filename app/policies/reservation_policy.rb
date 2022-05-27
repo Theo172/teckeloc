@@ -1,6 +1,6 @@
 class ReservationPolicy < ApplicationPolicy
 
-  def new
+  def new?
     create?
   end
   def create?
@@ -10,7 +10,7 @@ class ReservationPolicy < ApplicationPolicy
     update?
   end
   def update?
-    record.user == user
+    record.teckel.user == user
   end
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!

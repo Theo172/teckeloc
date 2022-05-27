@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   def profile
     @user = current_user
     authorize @user
-    @reservations = Reservation.where(user_id: current_user.id)
+    @reservation = Reservation.new
+    @asked_reservations = @user.teckels.map(&:reservations).flatten
   end
 
 end

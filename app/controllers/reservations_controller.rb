@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
     @reservation.teckel = @teckel
     authorize @reservation
     if @reservation.save
-      redirect_to profile_path(@teckel)
+      redirect_to profile_path
     else
       render :new
     end
@@ -28,7 +28,6 @@ class ReservationsController < ApplicationController
   def update
     @reservation.update(reservation_params)
     authorize @reservation
-    redirect_to profile_path
   end
 
   private
