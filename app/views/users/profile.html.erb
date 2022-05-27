@@ -31,13 +31,15 @@
   <h3 class="title_h3">My reservations</h3>
   <div class="container-payment">
    <% @asked_reservations.each do |reservation| %>
-    <div class="card_background card-margin">
+   <%= link_to  teckel_path(reservation.teckel) do%>
+    <div class="card_background">
         <%= cl_image_tag reservation.teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
         <p class="teckel_name description"><%= reservation.teckel.name %></p>
         <p class="description"> <%= reservation.teckel.description %></p>
         <p class="p-padding">Dates : <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
         <p class="p-padding">Renter : <%= reservation.user.username %></p>
         <div class='p-padding'>
+    <% end %>
           <%= simple_form_for [reservation.teckel, reservation] do |f| %>
             <%= f.input :status, collection: Reservation::STATUS %>
             <%= f.button :submit, class:'btn btn-cutie btn-link'%>
@@ -54,15 +56,7 @@
     </div>
   <% end %>
 </div>
-  <% if @asked_reservations.empty?%>
-  <% else %>
-    <div class="reservation_link">
-      <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
-    </div>
-   <% end %>
-
 <hr>
-
 <div>
  <h3 class="title_h3">My reservations as renter</h3>
   <div class="container-payment">
