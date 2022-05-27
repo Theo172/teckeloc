@@ -1,50 +1,104 @@
-
-
 <h1 class="profile_title">Profile</h1>
-<%# <%= @user.username%>
+
 <hr>
-
-<div class="profile_container">
-
-  <div class="my_teckel_container">
-    <h3 class="title_h3">my lovely teckels</h3>
-      <% @user.teckels.each do |teckel|%>
-          <%# <div class="teckel-description"> %>
-        <div class="card_background">
-        <div class="teckel_name"><%= teckel.name%></div>
-          <%= cl_image_tag teckel.photo.key, crop: :fill, class: "card_img"%>
-          <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
-          <p class="card_descr px-3"><%= teckel.description %>
-          </p>
-          </div>
-          <div class="teckel_age"><%= teckel.age %></div>
-          <p>4,87 <i class="fa-solid fa-star"></i></p>
-          <div class="d-flex px-3 pb-2 mt-1">
-            <p class="card_price "><%= teckel.price %></p><p> / nuit</p>
-          </div>
+<h3 class="title_h3">my lovely teckels</h3>
+<div class="container">
+  <% @user.teckels.each do |teckel|%>
+    <div class="card_background">
+         <%= link_to teckel_path(teckel) do %>
+        <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
+        <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
+          <p>Meet <%= teckel.name %></p>
+          <p>5<i class="fa-solid fa-star"></i></p>
         </div>
-      <% end%>
-        <%= link_to "Add a pet",  new_teckel_path, class:"btn btn-cutie btn-link" %>
+        <p class="card_descr px-3"></p>
+        <div class="d-flex px-3 pb-2 mt-1">
+          <p class="card_price"><%= teckel.price %></p>
+        </div>
+      <% end  %>
+    </div>
+  <% end %>
+</div>
+
+  <div class="reservation_link">
+    <%= link_to "Add a pet",  new_teckel_path, class:"btn btn-cutie btn-link" %>
   </div>
+
   <hr>
 
-  <div class="reservation my_teckel_container">
-    <h3 class="title_h3">My reservations</h3>
-      <% @user.teckels.each do |teckel|%>
-          <%# <div class="teckel-description"> %>
-        <div class="card_background card_background_profile">
-        <div class="teckel_name"><%= teckel.name%></div>
-          <%= cl_image_tag teckel.photo.key, crop: :fill, class: "card_img"%>
-          <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
-          <p class="card_descr px-3"><%= teckel.description %>
+  <h3 class="title_h3">My reservations</h3>
+  <div class="container">
+  <% @user.teckels.each do |teckel|%>
+    <div class="card_background">
+         <%= link_to teckel_path(teckel) do %>
+        <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
+        <p class="teckel_name description"><%= teckel.name %></p>
+        <p class="description"> <%= teckel.description %></p>
+        <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
+          <p> <%= teckel.age %> years old</p>
+          <p>5<i class="fa-solid fa-star"></i></p>
+        </div>
+
+        <p class="card_descr px-3"></p>
+        <div class="d-flex px-3 pb-2 mt-1">
+          <p class="card_price"><%= teckel.price %>€ per night</p>
+        </div>
+      <% end  %>
+    </div>
+  <% end %>
+</div>
+
+  <div class="reservation_link">
+    <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
+  </div>
+
+  <hr>
+
+<div>
+ <h3 class="title_h3">My reservations as renter</h3>
+  <div class="container-payment">
+    <% @user.reservations.each do |reservation| %>
+      <div class="container-payment-card">
+        <div class="img-center">
+          <img class="logo" src="https://res.cloudinary.com/dfaupoje1/image/upload/v1653487862/teckel/teckel_ummbhi.jpg" alt="">
+        </div>
+        <div class="section-payment">
+          <p>
+            Hi <%= @user.username %> we are now confirming your reservation !
+            You will rent <%= reservation.teckel.name %> from <%= @user.username %>
+            from the 1rst of June to the 23rd August 2022.
+            Based on your rate of <%= reservation.teckel.price%>€ per night.
           </p>
-          </div>
-          <div class="teckel_age"><%= teckel.age %></div>
-          <p>4,87 <i class="fa-solid fa-star"></i></p>
-          <div class="d-flex px-3 pb-2 mt-1">
-            <p class="card_price "><%= teckel.price %></p><p> / nuit</p>
+        </div>
+        <div class="section-payment">
+          <div class="img-center">
+            <h3 class="title_h3"><%= link_to reservation.teckel.name, teckel_path(reservation.teckel) %></h3>
+            <%= cl_image_tag reservation.teckel.photo.key, class:'card-payment-img' %>
           </div>
         </div>
+        <div class="section-border section-border-empty">
+          <p>Reservation recap</p>
+        </div>
+        <div class="section-payment section-border-bottom">
+          <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+          <% t = reservation.ending_date - reservation.starting_date %>
+          <p><%= reservation.teckel.price %>€ x <%= t.to_i %> nights</p>
+          <p><%= t.to_i * reservation.teckel.price %>€</p>
+        </div>
+        <div class="section-payment">
+          <p>
+            Thank you <%= @user.username %> for booking our cutie <%= @user.teckels.name %>,
+            we hope you will have a great experience !
+          </p>
+          <p>
+            Best Regards from Teckeloc team.
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
       <% end%>
       <div class="reservation_link">
         <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>

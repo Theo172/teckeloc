@@ -1,10 +1,12 @@
+<h1 class="profile_title"> Teckelou's profile</h1>
+<hr>
 <div class="container-show">
   <div class="container-card">
     <div class="card-show-img">
       <%= cl_image_tag @teckel.photo.key, height: 300, width: 400, crop: :fill %>
     </div>
     <div class="card-show">
-      <h4> Meet our adorable <%= @teckel.name %></h4>
+      <h4 class="title_h4"> Meet our adorable <%= @teckel.name %></h4>
     </div>
     <hr>
     <div>
@@ -14,10 +16,36 @@
     </div>
     <hr>
     <div>
+      <p> <span class="title_p">Species:</span> <%= @teckel.species %></p>
+      <p> <span class="title_p"> Hair:</span>  <%= @teckel.hair %></p>
+      <p> <span class="title_p">Color:</span>  <%= @teckel.color %></p>
+      <p> <span class="title_p">Sex:</span>  <%= @teckel.sex %></p>
+      <p> <span class="title_p">Age:</span>  <%= @teckel.age %></p>
+      <p> <span class="title_p">Description:</span>  <%= @teckel.description %></p>
+      <p> <span class="title_p">Anecdote:</span>  <%= @teckel.anecdote %></p>
+      <p> <span class="title_p">Special features:</span>  <%= @teckel.special_features %></p>
+
+    </div>
+    <hr>
+    <div>
       <p>How that service works ? Teckeloc is a simple simple services where you can rent a Teckel from his owner. The owner rent his dog for a stated duration. This does not mean this is your dog but that you can take out or pet him as he pleased. The dog is human being and can’t be forced to do anything, Assuming you already knew that no refund are possible because the dog didn’t act as you expected.</p>
     </div>
+    <hr>
+    <div class="apart">
+      <% if user_signed_in? %>
+        <% if policy(@teckel).edit? %>
+          <%= link_to "Update", edit_teckel_path(@teckel), class:'btn btn-cutie btn-link' %>
+        <% end %>
+        <% if policy(@teckel).destroy? %>
+          <%= link_to "Delete", teckel_path(@teckel), method: :delete,  data: { confirm: "Are you sure?" }, class:'btn btn-cancel btn-decline-link' %>
+        <% end %>
+      <% end %>
+
+      <%= link_to "Back to Home page", teckels_path, class:'btn btn-cutie btn-link' %>
   </div>
-   <% if @teckel.user != current_user %>
+
+  </div>
+<% if @teckel.user != current_user %>
   <div class="container-recap">
     <div class="card-show-img">
       <%= cl_image_tag @teckel.photo.key, height: 150, width: 200, crop: :fill %>
@@ -41,15 +69,3 @@
   </div>
 </div>
 <% end %>
-
-<% if user_signed_in? %>
-  <% if policy(@teckel).edit? %>
-    <%= link_to "Update", edit_teckel_path(@teckel) %>
-  <% end %>
-  <% if policy(@teckel).destroy? %>
-    <%= link_to "Delete", teckel_path(@teckel), method: :delete,  data: { confirm: "Are you sure?" } %>
-  <% end %>
-<% end %>
-
-<%= link_to "back", teckels_path %>
-<%= link_to "Back to Home page", teckels_path %>

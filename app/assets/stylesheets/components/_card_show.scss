@@ -16,9 +16,11 @@ hr {
 
 .container-card {
   background-color: white;
-  margin: 20px 20px;
-  padding: 20px 20px;
+  margin: 10px 20px;
+  padding: 40px 20px;
   width: 700px;
+  border-radius: 15px;
+  box-shadow: 3px 3px 3px grey;
 }
 
 .container-recap {
@@ -40,4 +42,20 @@ hr {
 .card-show-recap {
   text-align: center;
   margin: 10px 0px 0px 0px;
+}
+
+.title_p {
+  font-size: 17px;
+  color: #54BAB9;
+}
+
+.title_h4 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #54BAB9;
+  text-shadow: 1px 1px 1px #ffbfcb6c;
+}
+
+.apart {
+  text-align: center;
 }
