@@ -8,7 +8,7 @@
     <%= f.input :color, input_html: { class: "form_input" } %>
     <%= f.input :age, input_html: { class: "form_input" } %>
     <%= f.input :sex, collection: Teckel::SEX, input_html: { class: "form_input" }  %>
-    <%= f.input :address, input_html: { class: "form_input" } %>
+      <%= f.input :address, input_html: { class: "d-none", data: { geocoder_target: "address" } }, wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
   </div>
   <div class="form_part">
     <%= f.input :special_features, input_html: { class: "form_input" } %>
