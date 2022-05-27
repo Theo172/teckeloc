@@ -15,7 +15,7 @@ class TeckelsController < ApplicationController
         lat: teckel.latitude,
         lng: teckel.longitude,
         info_window: render_to_string(partial: "info_window", locals: { teckel: teckel }),
-        image_url: helpers.asset_url("teckel-item.jpeg")
+        image_url: helpers.asset_url("teckel-item.jpg")
       }
     end
   end
