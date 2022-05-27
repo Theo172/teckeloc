@@ -9,6 +9,16 @@ class TeckelsController < ApplicationController
     else
       @teckels = policy_scope(Teckel).order(created_at: :desc)
     end
+    @teckels = Teckel.geocoded
+
+    @markers = @teckels.map do |teckel|
+      {
+        lat: teckel.latitude,
+        lng: teckel.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { teckel: teckel }),
+        image_url: helpers.asset_url("teckel-item.jpeg")
+      }
+    end
   end
 
   def show

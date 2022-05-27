@@ -1,5 +1,11 @@
 <h1 class="profile_title">Welcome to teckeloc : the land of beautiful and strong angels</h1>
 <hr>
+<div style="width: 100%; height: 250px;"
+    data-controller="mapbox"
+    data-mapbox-markers-value="<%= @markers.to_json %>"
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+<hr>
 <div class="container">
   <% @teckels.each do |teckel| %>
     <div class="card_background">
@@ -8,6 +14,9 @@
         <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
           <p>Meet <%= teckel.name %></p>
           <p>5<i class="fa-solid fa-star"></i></p>
+        </div>
+        <div class="d-flex px-3 pb-2 mt-1">
+          <p><%= teckel.description %></p>
         </div>
         <p class="card_descr px-3"></p>
         <div class="d-flex px-3 pb-2 mt-1">
