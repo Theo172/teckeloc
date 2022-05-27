@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   color: #54BAB9;
+  margin-bottom: 20px;
 }
 
 .title_h3 {
@@ -17,14 +18,15 @@
 }
 
 .profile_container{
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100%;
 }
 
 .my_teckel_container{
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -47,6 +49,12 @@
 .teckel_age{
   text-align: center;
 }
-// .teckel_img {
-//   border-radius: 50%;
-// }
+.teckel_img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.description {
+  text-align: center;
+}
