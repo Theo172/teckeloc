@@ -1,10 +1,7 @@
 <h1 class="profile_title">Profile</h1>
 
-<%= @user.username%>
 <hr>
 
-
-<hr>
 <h3 class="title_h3">my lovely teckels</h3>
 <div class="container">
   <% @user.teckels.each do |teckel|%>
@@ -54,10 +51,8 @@
   <div class="reservation_link">
     <%= link_to "accept",  new_teckel_path, class:"btn btn-cutie btn-link" %>
   </div>
-  <hr>
 
-
-
+<hr>
 
 <div>
  <h3 class="title_h3">My reservations as renter</h3>
@@ -86,32 +81,49 @@
         </div>
         <% if reservation.status == "Accept" %>
         <div class="section-payment section-border">
-        <div class="section-payment section-border-bottom">
-          <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
-          <% t = reservation.ending_date - reservation.starting_date %>
-          <p>
-            Thank you <%= @user.username %> for booking our cutie <%= @user.teckels.name %>,
-            we hope you will have a great experience !
-          </p>
-          <p>
-            Best Regards from Teckeloc team.
-            <hr>
-            Status : <%= reservation.status %>
-          </p>
+          <div class="section-payment section-border-bottom">
+            <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+            <% t = reservation.ending_date - reservation.starting_date %>
+            <p>
+              Thank you <%= @user.username %> for booking our cutie <%= @user.teckels.name %>,
+              we hope you will have a great experience !
+            </p>
+            <p>
+              Best Regards from Teckeloc team.
+              <hr>
+              Status : <%= reservation.status %>
+            </p>
+          </div>
         </div>
         <% elsif reservation.status == "Decline" %>
-          <div class="section-payment section-border">
-          <p>Your reservation is decline by owner</p>
+        <div class="section-payment section-border">
+          <div class="section-payment section-border-bottom">
+            <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+            <% t = reservation.ending_date - reservation.starting_date %>
+            <p>
+              Hi We are sorry <%= @user.username %> but your reservation for <%= @user.teckels.name %> has been declined !
+            </p>
+            <p>
+              Best Regards from Teckeloc team.
+              <hr>
+              Status : <%= reservation.status %>
+            </p>
           </div>
-          <hr>
-           Status : <%= reservation.status %>
+        </div>
         <% else %>
-          <div class="section-payment section-border">
-          <p>Your reservation is pending...</p>
-          </div>
-           <hr>
-           Status : <%= reservation.status %>
-        <% end %>
+        <div class="section-payment section-border-bottom">
+            <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
+            <% t = reservation.ending_date - reservation.starting_date %>
+            <p>
+              Hi <%= @user.username %>  your reservation for <%= @user.teckels.name %> is pending...!
+            </p>
+            <p>
+              Best Regards from Teckeloc team.
+              <hr>
+              Status : <%= reservation.status %>
+            </p>
+        </div>
+          <% end %>
       </div>
     <% end %>
   </div>
