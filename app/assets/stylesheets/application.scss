@@ -14,6 +14,7 @@
 @import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 
 a {
+  cursor: url("https://i.pinimg.com/originals/29/a5/05/29a505fa0b46e07990ffcf286c699c62.png"), pointer, default;
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
   &:hover {
