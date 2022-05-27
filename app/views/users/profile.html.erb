@@ -31,7 +31,7 @@
   <h3 class="title_h3">My reservations</h3>
   <div class="container-payment">
    <% @asked_reservations.each do |reservation| %>
-    <div class="card_background">
+    <div class="card_background card-margin">
         <%= cl_image_tag reservation.teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
         <p class="teckel_name description"><%= reservation.teckel.name %></p>
         <p class="description"> <%= reservation.teckel.description %></p>
@@ -40,7 +40,7 @@
         <div class='p-padding'>
           <%= simple_form_for [reservation.teckel, reservation] do |f| %>
             <%= f.input :status, collection: Reservation::STATUS %>
-            <%= f.button :submit, class:'p-padding' %>
+            <%= f.button :submit, class:'btn btn-cutie btn-link'%>
           <% end %>
         </div>
         <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
