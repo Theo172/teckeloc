@@ -10,7 +10,7 @@
   <% @teckels.each do |teckel| %>
     <div class="card_background">
       <%= link_to teckel_path(teckel) do %>
-        <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
+        <%= cl_image_tag teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img underline" %>
         <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
           <p>Meet <%= teckel.name %></p>
           <p>5<i class="fa-solid fa-star"></i></p>
