@@ -15,7 +15,9 @@
   </div>
 
   <div class="form-actions">
+    <%= link_to profile_path(current_user) do  %>
     <%= f.button :submit, "Log in", class: "btn-cutie" %>
+    <% end %>
   </div>
 <% end %>
 </div>
