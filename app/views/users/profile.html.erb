@@ -31,17 +31,18 @@
   <h3 class="title_h3">My reservations</h3>
   <div class="container-payment">
    <% @asked_reservations.each do |reservation| %>
-    <div class="card_background">
-         <%= link_to teckel_path(reservation.teckel) do %>
+    <div class="card_background card-margin">
         <%= cl_image_tag reservation.teckel.photo.key, height: 300, width: 400, crop: :fill, class: "card_img" %>
         <p class="teckel_name description"><%= reservation.teckel.name %></p>
         <p class="description"> <%= reservation.teckel.description %></p>
         <p class="p-padding">Dates : <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
         <p class="p-padding">Renter : <%= reservation.user.username %></p>
+        <div class='p-padding'>
           <%= simple_form_for [reservation.teckel, reservation] do |f| %>
-            <%= f.input :status, collection: Reservation::STATUS, class:'p-padding' %>
-            <%= f.button :submit, class:'p-padding' %>
+            <%= f.input :status, collection: Reservation::STATUS %>
+            <%= f.button :submit, class:'btn btn-cutie btn-link'%>
           <% end %>
+        </div>
         <div class="d-flex justify-content-between card_title pb-0 px-3 pt-2 mb-1">
           <p> <%= reservation.teckel.age %> years old</p>
           <p>5<i class="fa-solid fa-star"></i></p>
@@ -50,7 +51,6 @@
         <div class="d-flex px-3 pb-2 mt-1">
           <p class="card_price"><%= reservation.teckel.price %>€ per night</p>
         </div>
-      <% end  %>
     </div>
   <% end %>
 </div>
@@ -89,7 +89,6 @@
           <p>Reservation recap</p>
         </div>
         <% if reservation.status == "Accept" %>
-        <div class="section-payment section-border">
           <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
             <% t = reservation.ending_date - reservation.starting_date %>
@@ -103,9 +102,7 @@
               Status : <%= reservation.status %>
             </p>
           </div>
-        </div>
         <% elsif reservation.status == "Decline" %>
-        <div class="section-payment section-border">
           <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
             <% t = reservation.ending_date - reservation.starting_date %>
@@ -118,7 +115,6 @@
               Status : <%= reservation.status %>
             </p>
           </div>
-        </div>
         <% else %>
         <div class="section-payment section-border-bottom">
             <p>Renting from <%= reservation.starting_date %> to <%= reservation.ending_date %></p>
